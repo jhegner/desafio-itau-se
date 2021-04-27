@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Desafio</title>
+</head>
+<body>
+<h1 class="h3 mb-3 fw-normal">Dashboard</h1>
+
+<ul>
+    <li><a href="#" data-th-href="@{/dash/tweet}">Tweetar</a></li>
+    <li><a href="#" data-th-href="@{/dash/sms}">Enviar SMS</a></li>
+</ul>
+
+<!--twitter -->
+<section data-th-if="${formTweet != null}">
+    <h3>Enviar Tweet</h3>
+    <form data-th-action="@{/dash/sendTweet}" data-th-object="${formTweet}" method="post">
+        <textarea name="textTweet" id="txtTweet" cols="30" rows="10" maxlength="280"
+                  data-th-field="*{texto}"
+                  placeholder="Escreva aqui o seu tweet"></textarea> <br>
+        <button type="submit">Enviar</button>
+    </form>
+    <!--    Listar aqui-->
+</section>
+
+<!--twillo sms -->
+<section data-th-if="${formSMS != null}">
+    <h3>Enviar SMS</h3>
+    <form data-th-action="@{/dash/sendSMS}" data-th-object="${formSMS}" method="post">
+        <input type="number" name="txtNumero" id="txtNumero" placeholder="Informe o telefone aqui"
+               data-th-field="*{numeroTelefone}"><br><br>
+        <textarea name="textSMS" id="txtSMS" cols="30" rows="10" maxlength="50"
+                  data-th-field="*{mensagem}"
+                  placeholder="Escreva aqui o SMS"></textarea><br>
+        <button type="submit">Enviar</button>
+    </form>
+<!--    Listar aqui-->
+</section>
+
+</body>
+</html>
