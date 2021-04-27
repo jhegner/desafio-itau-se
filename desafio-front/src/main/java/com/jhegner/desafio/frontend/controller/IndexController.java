@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Map;
-
 @Controller
 public class IndexController {
 
-    private AppService svc;
+    private final AppService svc;
 
     @Autowired
     public IndexController(AppService svc) {
@@ -28,11 +26,6 @@ public class IndexController {
     @RequestMapping(value = "/login")
     public String login() {
         return "redirect:dash";
-    }
-
-    private void clean(Model model) {
-        model.addAllAttributes(Map.of("formTweet", new TweetModel(""),
-                "formSMS", new SmsModel("", "")));
     }
 
     @GetMapping("/dash")
